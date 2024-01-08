@@ -13,6 +13,8 @@ namespace ETRadeApp.Business
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<IProductService, ProductManager>();
+
             services.AddSingleton<RabbitMqSettings>();
             services.AddScoped<ISendMesageFactory, MessageFactory>();
             services.AddScoped<IQueueGetFactory, QueueGetFactoryQuery>();

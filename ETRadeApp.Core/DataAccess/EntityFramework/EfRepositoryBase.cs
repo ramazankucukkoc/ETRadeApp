@@ -1,4 +1,5 @@
 ﻿using ETRadeApp.Core.Bases;
+using ETRadeApp.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
@@ -18,14 +19,14 @@ namespace ETRadeApp.Core.DataAccess.EntityFramework
         public async Task<TEntity> AddAsync(TEntity entity)
         {
             var addedEntity = await _context.Set<TEntity>().AddAsync(entity);
-            entity.CreatedDate = DateTime.Now;
+            entity.CreatedDate = DateTime.UtcNow.ConvertToTimeZoneTurkey();
             await _context.SaveChangesAsync();
             return addedEntity.Entity;
         }
         public async Task<List<TEntity>> AddRangeAsync(List<TEntity> entities)
         {
             await _context.Set<TEntity>().AddRangeAsync(entities);
-            entities.ForEach(x => x.UpdateDate = DateTime.Now);
+            entities.ForEach(x => x.CreatedDate = DateTime.UtcNow.ConvertToTimeZoneTurkey());
             await _context.SaveChangesAsync();
             return entities;
         }
@@ -36,20 +37,20 @@ namespace ETRadeApp.Core.DataAccess.EntityFramework
         public async Task<TEntity> DeleteAsync(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Deleted;
-            entity.DeletedDate = DateTime.Now;
+            entity.DeletedDate = DateTime.UtcNow.ConvertToTimeZoneTurkey();
             await _context.SaveChangesAsync();
             return entity;
         }
         public async Task<List<TEntity>> DeleteRangeAsync(List<TEntity> entities)
         {
             _context.Entry(entities).State = EntityState.Deleted;
-            entities.ForEach(x => x.DeletedDate = DateTime.Now);
+            entities.ForEach(x => x.DeletedDate = DateTime.UtcNow.ConvertToTimeZoneTurkey());
             await _context.SaveChangesAsync();
             return entities;
         }
         public async Task<PagedResult<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, int index = 0, int size = 10)
         {
-            IQueryable<TEntity> query = _context.Set<TEntity>();
+            IQueryable<TEntity> query = _context.Set<TEntity>().AsNoTracking();
             if (predicate is not null)
                 query = query.Where(predicate);
             if (include is not null)
@@ -58,7 +59,6 @@ namespace ETRadeApp.Core.DataAccess.EntityFramework
                 query = orderBy(query);
 
             var items = await query.Skip(index * size).Take(size).ToListAsync();
-
             var pagedResult = new PagedResult<TEntity>()
             {
                 Count = await query.CountAsync(),
@@ -77,9 +77,9 @@ namespace ETRadeApp.Core.DataAccess.EntityFramework
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
-            if (entity.IsDeleted is true) entity.DeletedDate = DateTime.UtcNow;
+            if (entity.IsDeleted is true) entity.DeletedDate = DateTime.UtcNow.ConvertToTimeZoneTurkey();
 
-            else entity.UpdateDate = DateTime.UtcNow;
+            else entity.UpdateDate = DateTime.UtcNow.ConvertToTimeZoneTurkey();
             await _context.SaveChangesAsync();
             return entity;
         }
@@ -88,9 +88,9 @@ namespace ETRadeApp.Core.DataAccess.EntityFramework
             _context.Entry(entities).State = EntityState.Modified;
             foreach (TEntity entity in entities)
             {
-                if (entity.IsDeleted is true) entity.DeletedDate = DateTime.UtcNow;
+                if (entity.IsDeleted is true) entity.DeletedDate = DateTime.UtcNow.ConvertToTimeZoneTurkey();
 
-                else entity.UpdateDate = DateTime.UtcNow;
+                else entity.UpdateDate = DateTime.UtcNow.ConvertToTimeZoneTurkey();
             }
             await _context.SaveChangesAsync();
             return entities;
