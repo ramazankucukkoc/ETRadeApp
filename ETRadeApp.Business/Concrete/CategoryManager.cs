@@ -1,38 +1,26 @@
-﻿using ETRadeApp.Business.Abstract;
-using ETRadeApp.Core.RabbitMq;
-using ETRadeApp.DataAccess.Context;
+﻿using AutoMapper;
+using ETRadeApp.Business.Abstract;
+using ETRadeApp.Business.Dtos.Category;
+using ETRadeApp.DataAccess.Abstract;
 using ETRadeApp.Entities;
-using Newtonsoft.Json;
 
 namespace ETRadeApp.Business.Concrete
 {
     public class CategoryManager : ICategoryService
     {
-        private readonly MsSqlDbContext msSqlDbContext;
-        private readonly ISendMesageFactory _sendMesageFactory;
-        private readonly IQueueGetFactory _queueGetFactory;
-        public CategoryManager(MsSqlDbContext msSqlDbContext, ISendMesageFactory sendMesageFactory, IQueueGetFactory queueGetFactory)
+        private readonly IMapper _mapper;
+        private readonly ICategoryRepository _categoryRepository;
+        public CategoryManager(IMapper mapper, ICategoryRepository categoryRepository)
         {
-            _queueGetFactory = queueGetFactory;
-            _sendMesageFactory = sendMesageFactory;
-            this.msSqlDbContext = msSqlDbContext;
+            _mapper = mapper;
+            _categoryRepository = categoryRepository;
         }
-        public  void Add(Category category)
+        public async Task<ResponseCategoryAddDto> AddAsync(RequestCategoryDto category)
         {
-            var categoryJson = JsonConvert.SerializeObject(category);
-            Message message = new Message();
-            message.Content = categoryJson;
-            message.Name = category.Name;
-             _sendMesageFactory.SendMesageAsync(categoryJson);
-            msSqlDbContext.Messages.Add(message);
-            msSqlDbContext.SaveChanges();
-        }
-        public async Task ConsumerAdd()
-        {
-            var message = await _queueGetFactory.GetQueue();         
-            var categoryQueue = JsonConvert.DeserializeObject<Category>(message);
-            msSqlDbContext.Categories.Add(categoryQueue);
-            msSqlDbContext.SaveChanges();
-        }
+            var mappedCategory = _mapper.Map<Category>(category);
+            var addedCategory = await _categoryRepository.AddAsync(mappedCategory);
+            var mappedAddedCategory=_mapper.Map<ResponseCategoryAddDto>(addedCategory);
+            return mappedAddedCategory;
+        }       
     }
 }

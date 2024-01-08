@@ -1,6 +1,6 @@
 ﻿using ETRadeApp.DataAccess.Abstract;
 using ETRadeApp.DataAccess.Concrete;
-using ETRadeApp.DataAccess.Context;
+using ETRadeApp.DataAccess.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +12,8 @@ namespace ETRadeApp.DataAccess
         public static IServiceCollection AddDataAccessServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+
             services.AddDbContext<MsSqlDbContext>(opt =>
             {
                 opt.UseSqlServer(configuration.GetConnectionString("SqlConnection"));

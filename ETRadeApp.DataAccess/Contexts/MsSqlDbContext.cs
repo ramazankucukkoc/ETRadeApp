@@ -2,7 +2,7 @@
 using ETRadeApp.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ETRadeApp.DataAccess.Context
+namespace ETRadeApp.DataAccess.Contexts
 {
     public class MsSqlDbContext : DbContext
     {

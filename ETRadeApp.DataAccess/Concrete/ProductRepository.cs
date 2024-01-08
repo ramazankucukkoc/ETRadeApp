@@ -1,6 +1,6 @@
 ﻿using ETRadeApp.Core.DataAccess.EntityFramework;
 using ETRadeApp.DataAccess.Abstract;
-using ETRadeApp.DataAccess.Context;
+using ETRadeApp.DataAccess.Contexts;
 using ETRadeApp.Entities;
 
 namespace ETRadeApp.DataAccess.Concrete

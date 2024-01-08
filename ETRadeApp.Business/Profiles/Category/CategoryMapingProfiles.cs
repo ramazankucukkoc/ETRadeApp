@@ -8,6 +8,8 @@ namespace ETRadeApp.Business.Profiles.Category
         public CategoryMapingProfiles()
         {
             CreateMap<ResponseCategoryListDto,Entities.Category>().ReverseMap();
+            CreateMap<RequestCategoryDto, Entities.Category>().ReverseMap();
+            CreateMap<ResponseCategoryAddDto, Entities.Category>().ReverseMap();
         }
     }
 }

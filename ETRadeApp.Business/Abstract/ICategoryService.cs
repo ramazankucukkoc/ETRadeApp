@@ -1,11 +1,10 @@
-﻿using ETRadeApp.Entities;
+﻿using ETRadeApp.Business.Dtos.Category;
+using ETRadeApp.Entities;
 
 namespace ETRadeApp.Business.Abstract
 {
     public interface ICategoryService
     {
-        void Add(Category category);
-        Task ConsumerAdd();
-
+        Task<ResponseCategoryAddDto> AddAsync(RequestCategoryDto category);
     }
 }

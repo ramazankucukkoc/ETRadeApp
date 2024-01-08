@@ -2,8 +2,7 @@
 
 namespace ETRadeApp.Business.Dtos.Category
 {
-    public class ResponseCategoryListDto : BaseEntityDto<int>
+    public class ResponseCategoryAddDto : BaseEntityDto<int>
     {
-
     }
 }

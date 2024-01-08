@@ -1,6 +1,5 @@
-﻿using ETRadeApp.API.Dtos;
-using ETRadeApp.Business.Abstract;
-using ETRadeApp.Entities;
+﻿using ETRadeApp.Business.Abstract;
+using ETRadeApp.Business.Dtos.Category;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ETRadeApp.API.Controllers
@@ -16,19 +15,10 @@ namespace ETRadeApp.API.Controllers
             _categoryService = categoryService;
         }
         [HttpPost]
-        public IActionResult Add([FromBody] CategoryAddDto categoryAddDto)
+        public async Task<IActionResult> Add([FromBody] RequestCategoryDto categoryAddDto)
         {
-            Category category = new Category();
-            category.CreatedDate = DateTime.Now;
-            category.Name = categoryAddDto.Name;
-            _categoryService.Add(category);
-            return Ok();
-        }
-        [HttpPost]
-        public async Task<IActionResult> ConsumerAdd()
-        {
-           await _categoryService.ConsumerAdd();
-            return Ok();
+            var result = await _categoryService.AddAsync(categoryAddDto);
+            return Ok(result);
         }
     }
 }
