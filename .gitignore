@@ -1,0 +1,23 @@
+# Visual Studio tarafýndan oluþturulan dosyalar
+.vscode/
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.sln.docstates
+
+# JetBrains Rider tarafýndan oluþturulan dosyalar
+.idea/
+
+# NuGet tarafýndan oluþturulan dosyalar
+*.nuget/
+packages/
+
+# OS tarafýndan oluþturulan dosyalar
+[Tt]humbs.db
+*.DS_Store
+
+# Uygulama özel dosyalarý
+appsettings.json
+appsettings.Development.json

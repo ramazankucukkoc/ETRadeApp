@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETRadeApp.Entities", "ETRadeApp.Entities\ETRadeApp.Entities.csproj", "{191C0D65-30E9-414A-8069-9F455DC65138}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETRadeApp.DataAccess", "ETRadeApp.DataAccess\ETRadeApp.DataAccess.csproj", "{502CCCEB-DFEF-4A82-9BEF-06387D7E4961}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETRadeApp.Business", "ETRadeApp.Business\ETRadeApp.Business.csproj", "{C0BBB8D4-E4BD-4CEE-9F26-7D5615DFB36D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETRadeApp.API", "ETRadeApp.API\ETRadeApp.API.csproj", "{5499D083-D1CA-4F7D-B17A-0C1A7C8F0A7D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETRadeApp.Core", "ETRadeApp.Core\ETRadeApp.Core.csproj", "{344781B5-A3E7-4BB5-ACCE-42659AE99CA4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A8D65961-E663-4E7D-8DE4-FD1C0A1B4E19}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{191C0D65-30E9-414A-8069-9F455DC65138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{191C0D65-30E9-414A-8069-9F455DC65138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{191C0D65-30E9-414A-8069-9F455DC65138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{191C0D65-30E9-414A-8069-9F455DC65138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{502CCCEB-DFEF-4A82-9BEF-06387D7E4961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{502CCCEB-DFEF-4A82-9BEF-06387D7E4961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{502CCCEB-DFEF-4A82-9BEF-06387D7E4961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{502CCCEB-DFEF-4A82-9BEF-06387D7E4961}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0BBB8D4-E4BD-4CEE-9F26-7D5615DFB36D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0BBB8D4-E4BD-4CEE-9F26-7D5615DFB36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0BBB8D4-E4BD-4CEE-9F26-7D5615DFB36D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0BBB8D4-E4BD-4CEE-9F26-7D5615DFB36D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5499D083-D1CA-4F7D-B17A-0C1A7C8F0A7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5499D083-D1CA-4F7D-B17A-0C1A7C8F0A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5499D083-D1CA-4F7D-B17A-0C1A7C8F0A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5499D083-D1CA-4F7D-B17A-0C1A7C8F0A7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{344781B5-A3E7-4BB5-ACCE-42659AE99CA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{344781B5-A3E7-4BB5-ACCE-42659AE99CA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{344781B5-A3E7-4BB5-ACCE-42659AE99CA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{344781B5-A3E7-4BB5-ACCE-42659AE99CA4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16BE0B6E-B089-4852-B90F-4DEF0904CA35}
+	EndGlobalSection
+EndGlobal
