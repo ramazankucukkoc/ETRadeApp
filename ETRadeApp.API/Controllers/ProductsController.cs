@@ -1,6 +1,5 @@
 ﻿using ETRadeApp.Business.Abstract;
 using ETRadeApp.Business.Dtos.Product;
-using ETRadeApp.Core.Bases;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ETRadeApp.API.Controllers
@@ -17,16 +16,11 @@ namespace ETRadeApp.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAsync([FromBody] RequestProductAddDto request)
+        public IActionResult AddAsync([FromBody] RequestProductAddDto request)
         {
-            var product = await _productService.AddAsync(request);
+            var product =  _productService.AddAsync(request);
             return Ok(product);
         }
-        [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] PageQuery query)
-        {
-            var result = await _productService.GetAllAsync(query);
-            return Ok(result);
-        }
+       
     }
 }

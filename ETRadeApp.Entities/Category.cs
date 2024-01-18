@@ -4,6 +4,6 @@ namespace ETRadeApp.Entities
 {
     public class Category : BaseEntity<int>
     {
-        public List<Product> Products { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }
