@@ -1,5 +1,6 @@
 ﻿using ETRadeApp.Business.Abstract;
 using ETRadeApp.Business.Dtos.Product;
+using ETRadeApp.Business.Validator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ETRadeApp.API.Controllers
@@ -9,18 +10,19 @@ namespace ETRadeApp.API.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
-
-        public ProductsController(IProductService productService)
+        private readonly ILogger<ProductsController> _logger;
+        public ProductsController(IProductService productService, ILogger<ProductsController> logger)
         {
             _productService = productService;
+            _logger = logger;
         }
 
         [HttpPost]
-        public IActionResult AddAsync([FromBody] RequestProductAddDto request)
+        [FluentValidationAspect(typeof(RequestProductAddDtoValidator))]
+        public async Task<IActionResult> AddAsync([FromBody] RequestProductAddDto request)
         {
-            var product =  _productService.AddAsync(request);
+            var product = await _productService.AddAsync(request);
             return Ok(product);
         }
-       
     }
 }

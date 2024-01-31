@@ -1,9 +1,12 @@
 ﻿using ETRadeApp.Business.Dtos.Product;
+using System.ServiceModel;
 
 namespace ETRadeApp.Business.Abstract
 {
+    [ServiceContract]
     public interface IProductService
     {
-       ResponseProductAddDto AddAsync(RequestProductAddDto product);
+        [OperationContract]
+        Task<ResponseProductAddDto> AddAsync(RequestProductAddDto product);
     }
 }
